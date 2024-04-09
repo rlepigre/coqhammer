@@ -50,6 +50,7 @@ Qed.
 
 Lemma le_plus : forall x:Z, x >= 0 -> x + x >= x.
 Proof.
+  Unset Hammer CVC4.
   hammer.
 Qed.
 
