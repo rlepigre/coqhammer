@@ -572,7 +572,7 @@ Lemma transl_size_lb : forall (n : nat), size (transl (cex_term n)) >= 2^n.
 Proof.
   assert (forall (n m : nat), size (transl (long_term n m)) >= 2^n).
   induction n; ssimpl.
-  - scrush using (@Coq.Arith.PeanoNat.Nat.nlt_ge, @Coq.Arith.Gt.gt_le_S, @Coq.Arith.Compare_dec.not_ge, @size_nonneg).
+  - sauto.
   - assert (size (abstr (m - S n) (transl (long_term n m))) >= 2 * size (transl (long_term n m))).
     { hauto using (@abstr_size_lb, @no_lams_transl). }
     assert (size (abstr (m - S n) (transl (long_term n m))) >= 2 * 2 ^ n).
@@ -625,7 +625,7 @@ Qed.
 Lemma vars_abstr2 :
   forall (t : Term) (n v : nat), n <> v -> (HasVar n t <-> HasVar n (abstr2 v t)).
 Proof.
-  induction t; scrush. (* 2.4s *)
+  induction t; scrush.
 Qed.
 
 Lemma novar_abstr2 : forall (v : nat) (t : Term), NoLambdas t -> ~(HasVar v (abstr2 v t)).
