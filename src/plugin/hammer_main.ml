@@ -113,6 +113,7 @@ let rec hhterm_of (t : Constr.t) : Hh_term.hhterm =
                                mk_id (Uint63.to_string n)]
   | Float n          -> tuple [mk_id "$Float";
                                mk_id (Float64.to_string n)]
+  | String _         -> raise (HammerError "Primitive strings not supported.")
   | Array _          -> raise (HammerError "Primitive arrays not supported.")
 
 and hhterm_of_constrarray a =

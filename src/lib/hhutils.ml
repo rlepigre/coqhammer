@@ -271,7 +271,7 @@ let map_fold_constr f acc evd t =
       (ac, (nas, c'))
     in
     match kind evd t with
-    | Rel _ | Meta _ | Var _ | Sort _ | Const _ | Ind _ | Construct _ | Int _ | Float _ ->
+    | Rel _ | Meta _ | Var _ | Sort _ | Const _ | Ind _ | Construct _ | Int _ | Float _ | String _ ->
        f m acc t
     | Cast (ty1,ck,ty2) ->
        let (acc1, ty1') = hlp m acc ty1 in
@@ -341,7 +341,7 @@ let fold_constr f acc evd t =
     in
     let fold_ctx k ac (nas, c) = hlp (k + Array.length nas) ac c in
     match kind evd t with
-    | Rel _ | Meta _ | Var _ | Sort _ | Const _ | Ind _ | Construct _ | Int _ | Float _ ->
+    | Rel _ | Meta _ | Var _ | Sort _ | Const _ | Ind _ | Construct _ | Int _ | Float _ | String _ ->
        f m acc t
     | Cast (ty1,ck,ty2) ->
        let acc1 = hlp m acc ty1 in
@@ -408,7 +408,7 @@ let fold_constr_shallow f acc evd t =
     in
     let fold_ctx ac (_, c) = hlp ac c in
     match kind evd t with
-    | Rel _ | Meta _ | Var _ | Sort _ | Const _ | Ind _ | Construct _ | Int _ | Float _ ->
+    | Rel _ | Meta _ | Var _ | Sort _ | Const _ | Ind _ | Construct _ | Int _ | Float _ | String _ ->
        f acc t
     | Cast (ty1,ck,ty2) ->
        let acc1 = hlp acc ty1 in
@@ -475,7 +475,7 @@ let map_fold_constr_ker f acc t =
       (ac, (nas, c'))
     in
     match kind t with
-    | Rel _ | Meta _ | Var _ | Sort _ | Const _ | Ind _ | Construct _ | Int _ | Float _ ->
+    | Rel _ | Meta _ | Var _ | Sort _ | Const _ | Ind _ | Construct _ | Int _ | Float _ | String _ ->
        f m acc t
     | Cast (ty1,ck,ty2) ->
        let (acc1, ty1') = hlp m acc ty1 in
